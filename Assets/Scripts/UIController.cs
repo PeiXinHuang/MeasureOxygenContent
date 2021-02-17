@@ -13,7 +13,7 @@ public class UIController : MonoBehaviour
     public InputField input;
     public Button[] modelBtn;
     public Image tip;
-
+    public GameObject WaterStopClipTip;
 
     //搜索模型
     public void SearchModels()
@@ -50,4 +50,25 @@ public class UIController : MonoBehaviour
         Application.Quit();
     }
 
+    //显示止水夹开关面板，3s后隐藏
+    public void SetWaterStopClipTip(Vector3 pos, bool isOpen)
+    {
+        WaterStopClipTip.transform.position = pos;
+        if (isOpen) //是打开着的
+            WaterStopClipTip.transform.GetChild(0).GetComponent<Text>().text = "止水夹已经打开";
+        else
+            WaterStopClipTip.transform.GetChild(0).GetComponent<Text>().text = "止水夹已经关闭";
+       
+        WaterStopClipTip.SetActive(true);
+        CancelInvoke("HideWaterStopClipTip");
+        Invoke("HideWaterStopClipTip", 1.0f); 
+    }
+    public void UpdateWaterStopClipTip(Vector3 pos)
+    {
+        WaterStopClipTip.transform.position = pos;
+    }
+    private void HideWaterStopClipTip()
+    {
+        WaterStopClipTip.SetActive(false);
+    }
 }

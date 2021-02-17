@@ -31,6 +31,8 @@ public class SenceData : MonoBehaviour
 
     public List<GameObject> models; //保存模型对象到列表之中
 
+    
+   
 
     private void Start()
     {
@@ -111,6 +113,14 @@ public class SenceData : MonoBehaviour
   
     }
 
-
-   
+    //获取模型
+    public GameObject GetModel(MODELTYPE type)
+    {
+        foreach (GameObject item in models)
+        {
+            if (item.GetComponent<ModelController>().TYPE == type)
+                return item;
+        }
+        return null;
+    }
 }

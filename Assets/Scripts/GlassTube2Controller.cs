@@ -4,15 +4,13 @@ using UnityEngine;
 
 public class GlassTube2Controller : ModelController
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField]
+    private GameObject GasBottleObjPos = null;
+
+
+    public Vector3 getGasBottleObjPos()
     {
-        
+        return GasBottleObjPos.transform.position;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

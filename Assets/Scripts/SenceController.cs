@@ -29,7 +29,7 @@ public class SenceController : MonoBehaviour
 
 
     private GameObject ModelToCreate;//要创建的模型
-    private GameObject ModelCreated; //被创建的模型
+    public GameObject ModelCreated; //被创建的模型
     public bool isCreateModel;//是否正在创建模型
     private bool hasCreateModel; //是否已经创建模型
 
@@ -288,7 +288,17 @@ public class SenceController : MonoBehaviour
     {
         this.canMoveModel = false;
         target = null;
-        Invoke("SetCanControl", second);
+
+        if(isCreateModel) //如果是在创建模型时候的时候移动模型，即立即结束创建
+        {
+            EndCreateModel();
+        }
+
+
+        Invoke("SetCanControl", second); 
+
+
+
     }
     private void SetCanControl()
     {
