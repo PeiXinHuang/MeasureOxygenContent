@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class HotTowelController : ModelController
 {
-    [SerializeField]
-    private GameObject HotTowelObj = null; //热毛巾模型
+  
 
     private void OnTriggerEnter(Collider other)
     {
