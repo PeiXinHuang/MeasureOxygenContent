@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class GasBottleController : ModelController
 {
-
+    [HideInInspector]
     public  bool hasP = false; //是否有白磷
+
+    [SerializeField]
+    private GameObject HotTowelPos = null; //热毛巾位置
 
     private void OnTriggerEnter(Collider other)
     {
@@ -62,4 +65,9 @@ public class GasBottleController : ModelController
         return true;
     }
 
+    //获取热毛巾的位置
+    public Vector3 GetHotTowelPos()
+    {
+        return this.HotTowelPos.transform.position;
+    }
 }

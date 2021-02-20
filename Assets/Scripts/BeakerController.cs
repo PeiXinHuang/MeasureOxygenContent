@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class BeakerController : ModelController
 {
-    public bool hasGetWater = false;
+    public bool hasGetWater = false; //是否已经有水
+
+    [SerializeField]
+    private GameObject BubbldObj = null; //气泡模型
 
     [SerializeField]
     private GameObject WaterObj = null; //水
@@ -62,4 +65,16 @@ public class BeakerController : ModelController
     {
         WaterObj.SetActive(true);
     }
+
+    //显示气泡
+    public void ShowBubble()
+    {
+        BubbldObj.SetActive(true);
+        Invoke("HideBubble",3.0f);
+    }
+    private void HideBubble()
+    {
+        BubbldObj.SetActive(false);
+    }
 }
+
