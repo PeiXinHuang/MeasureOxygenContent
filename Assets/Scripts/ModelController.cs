@@ -219,8 +219,6 @@ public class ModelController : MonoBehaviour
           ) //本模型正在移动,移动连接的物体
         {
             UpdateLinkModelPos();
-          
-         
         }
 
   

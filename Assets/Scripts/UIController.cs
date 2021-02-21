@@ -14,7 +14,7 @@ public class UIController : MonoBehaviour
     public Button[] modelBtn;
     public Image tip;
     public GameObject WaterStopClipTip;
-
+    public GameObject ScollView;
     //搜索模型
     public void SearchModels()
     {
@@ -29,13 +29,39 @@ public class UIController : MonoBehaviour
 
     }
 
+    private void Start()
+    {
+        ScollView.GetComponent<RectTransform>().anchoredPosition = new Vector2(ScollView.GetComponent<RectTransform>().anchoredPosition.x,
+               0);
+    }
+    private void Update()
+    {
+        ResetScoreView();
+    }
+    //约束按钮库视图
+    private void ResetScoreView()
+    {
+      
+        if(ScollView.GetComponent<RectTransform>().anchoredPosition.y<0)
+            ScollView.GetComponent<RectTransform>().anchoredPosition = new Vector2(ScollView.GetComponent<RectTransform>().anchoredPosition.x,
+                0);
+
+        if (ScollView.GetComponent<RectTransform>().anchoredPosition.y > 180)
+            ScollView.GetComponent<RectTransform>().anchoredPosition = new Vector2(ScollView.GetComponent<RectTransform>().anchoredPosition.x,
+                180);
+
+    }
+
+
+
+
     //显示提示
-    public void ShowTip(Vector3 pos)
+    public void ShowLampTip(Vector3 pos)
     {
         
         tip.transform.position = pos;
         tip.gameObject.SetActive(true);
-        Invoke("HideTip", 2);
+        Invoke("HideTip", 1);
     }
 
     private void HideTip()

@@ -9,6 +9,8 @@ public class SenceData : MonoBehaviour
     public enum MODELTYPE //模型类型
     {
         //根据项目需求修改
+
+        //模型基本类型
         GASBOTTEL,
         GLASSTUBE1,
         GLASSTUBE2,
@@ -22,7 +24,11 @@ public class SenceData : MonoBehaviour
         MATCHES,
         ALOOHOLLAMP,
         DISPENSINGSPOON,
-        DISTILLEDWATER
+        DISTILLEDWATER,
+       
+        //模型子物体的类型
+        LAMPHAT,
+        MATCHCHILD
     }
 
    
@@ -83,7 +89,10 @@ public class SenceData : MonoBehaviour
     {
       
         modelNum[TYPE]++;
-      
+        if (TYPE == MODELTYPE.ALOOHOLLAMP)
+            modelNum[MODELTYPE.ALOOHOLLAMP]++;
+        else if (TYPE == MODELTYPE.MATCHES)
+            modelNum[MODELTYPE.MATCHCHILD]++;
     }
 
     //减少模型数量
@@ -92,12 +101,18 @@ public class SenceData : MonoBehaviour
         
         if(GetModelNum(TYPE)>0)
             modelNum[TYPE]--;
+        if (TYPE == MODELTYPE.ALOOHOLLAMP)
+            modelNum[MODELTYPE.ALOOHOLLAMP]--;
+        else if (TYPE == MODELTYPE.MATCHES)
+            modelNum[MODELTYPE.MATCHCHILD]--;
     }
 
     //删除模型
     public void RemoveModel(GameObject obj)
     {
-        
+        if (obj.GetComponent<ModelController>().TYPE == MODELTYPE.LAMPHAT
+            || obj.GetComponent<ModelController>().TYPE == MODELTYPE.MATCHCHILD)
+            return;
         models.Remove(obj);
         DelModelNum(obj.GetComponent<ModelController>().TYPE);
         Destroy(obj);
